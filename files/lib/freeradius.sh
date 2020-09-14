@@ -4,7 +4,7 @@ CONF="/etc/freeradius3"
 INIT="/etc/init.d/radiusd"
 
 . /lib/functions.sh
-config_load radius
+config_load freeradius
 
 rebuild()
 {
