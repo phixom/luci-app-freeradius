@@ -1,0 +1,35 @@
+#!/bin/sh
+
+uci -q batch <<-EOF >/dev/null
+    delete ucitrack.@radius[-1]
+    add ucitrack radius
+    set ucitrack.@radius[-1].exec="/usr/lib/freeradius.sh rebuild"
+    commit ucitrack
+EOF
+
+#cat <<-EOF >/etc/freeradius3/sites-available/luci-default
+#authorize {
+#	eap {
+#		ok = return
+#	}
+#	files
+#}
+#authenticate {
+#	Auth-Type MS-CHAP {
+#		mschap
+#	}
+#	eap
+#}
+#accounting {
+#}
+#session {
+#}
+#EOF
+
+#rm /etc/freeradius3/sites-enabled/default
+
+#cd /etc/freeradius3/sites-available
+
+#ln -s ../sites-enabled/luci-default
+
+/usr/lib/freeradius.sh rebuild

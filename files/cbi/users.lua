@@ -1,6 +1,6 @@
 local m, s, o
 
-m = Map("radius", translate("Radius - Users"), translate("User Accounts."))
+m = Map("freeradius", translate("Freeradius - Users"), translate("User Accounts."))
 
 s = m:section(TypedSection, "user", nil)
 s.template = "cbi/tblsection"

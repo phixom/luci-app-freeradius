@@ -1,6 +1,6 @@
 #!/bin/sh
 
-CONF="/etc/freeradius2"
+CONF="/etc/freeradius3"
 INIT="/etc/init.d/radiusd"
 
 . /lib/functions.sh
@@ -17,7 +17,7 @@ rebuild()
 clear_configure()
 {
 	echo > $CONF/clients.conf
-	echo > $CONF/users
+	echo > $CONF/mods-config/files/authorize
 }
 
 append_client()
@@ -41,7 +41,7 @@ append_user()
 	config_get username $1 username
 	config_get password $1 password
 
-	cat <<-EOF >>$CONF/users
+	cat <<-EOF >>$CONF/mods-config/files/authorize
 $username Cleartext-Password := "$password"
 EOF
 }
